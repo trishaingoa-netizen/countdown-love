@@ -18,7 +18,8 @@
       font-size: 18px;
       line-height: 1.6;
       opacity: 0;
-      transition: opacity 1s;
+      transition: opacity 1.5s;
+      white-space: pre-line;
     }
     .show {
       display: block;
@@ -32,45 +33,136 @@
 <h1>Until I See You</h1>
 <div id="countdown"></div>
 
-<div id="m1" class="message">I don’t think you realise this… but tonight doesn’t feel like any other night to me.</div>
-<div id="m2" class="message">I was just thinking about November… about Hyderabad… about how something in me had already started changing.</div>
-<div id="m3" class="message">I remember the way you looked at me… like you already knew what you felt.</div>
-<div id="m4" class="message">You were so sure about us. And I wasn’t… not because I didn’t feel it.</div>
-<div id="m5" class="message">I think a part of me was scared… because it meant I was about to feel it too.</div>
-<div id="m6" class="message">Somewhere along the way… you stopped being just someone I met… and became someone I can’t imagine my days without.</div>
-<div id="m7" class="message">It was in the small things. The way you stayed. The way you chose me, every day.</div>
-<div id="m8" class="message">I didn’t just understand your love… I fell into it.</div>
-<div id="m9" class="message">Now I don’t question it anymore. I just feel it… fully.</div>
-<div id="m10" class="message">January… me showing up… because something in me already knew you mattered.</div>
-<div id="m11" class="message">You showed me a kind of love I didn’t know existed.</div>
-<div id="m12" class="message">I stopped holding back. I just… drowned in it.</div>
-<div id="m13" class="message">Okay… now it’s real.</div>
-<div id="m14" class="message">And now I’m here. Just yours… ❤️</div>
+<div id="m1" class="message">
+
+I was just thinking about November…
+about Hyderabad…
+about how I didn’t even realise in those 4 days
+that something in me had already started changing.</div>
+
+<div id="m2" class="message">
+
+I remember the way you looked at me…
+like you already knew what you felt.
+And I didn’t know how to hold something that certain back then.</div>
+
+<div id="m3" class="message">
+
+You were so sure about us.
+And I wasn’t…
+not because I didn’t feel it,
+but because I didn’t understand how something could be that real, that quickly.</div>
+
+<div id="m4" class="message">
+
+I think a part of me was scared…
+because if what you felt was true,
+then it meant I was about to feel it too.</div>
+
+<div id="m5" class="message">
+
+I think this is the part where everything feels quiet…
+and honest.
+
+And if I’m being honest—
+somewhere along the way,
+you stopped being just someone I met 
+
+and became someone I can’t imagine my days without.</div>
+
+<div id="m6" class="message">
+
+And the strangest part is…
+it didn’t happen all at once.
+It was in the small things.
+The way you stayed. The way you cared. The way you chose me, every day.</div>
+
+<div id="m7" class="message">
+
+It took me time…
+but somewhere between then and now,
+I didn’t just understand your love…
+I fell into it.</div>
+
+<div id="m8" class="message">
+
+And now… I don’t question it anymore.
+I don’t overthink it.
+I just feel it… fully.</div>
+
+<div id="m9" class="message">
+
+And I keep going back to January…
+me showing up in Hyderabad…
+not just to surprise you,
+but because something in me already knew—
+you mattered more than I was ready to admit.</div>
+
+<div id="m10" class="message">
+
+Since then… it’s been us, constantly.
+Calls, texts, silence, everything in between.
+And in all of that,
+you showed me a kind of love I didn’t know existed.</div>
+
+<div id="m11" class="message">
+
+And somewhere along the way…
+without even realising when it happened…
+I stopped holding back.
+I stopped questioning.
+I just… drowned in it.</div>
+
+<div id="m12" class="message">
+
+Okay… now I’m not calm anymore.
+Now it’s real.</div>
+
+<div id="m13" class="message">
+
+And now I’m here.
+
+Not confused. Not unsure.
+Not afraid of how deep this goes.
+
+Just yours…
+in a way that feels easy, real, and unconditional.</div>
 
 <script>
 const target = new Date();
+target.setDate(target.getDate() + 1);
 target.setHours(10,45,0,0);
-target.setDate(target.getDate()+1);
+
+const revealTimes = [
+  "00:00","01:00","02:00","03:00","04:00","05:00",
+  "06:00","07:00","08:00","09:00","10:00","10:30","10:45"
+];
 
 function update() {
   const now = new Date();
+
   const diff = target - now;
-
-  document.getElementById("countdown").innerHTML =
-    Math.floor(diff/1000/60/60) + "h " +
-    Math.floor(diff/1000/60%60) + "m " +
-    Math.floor(diff/1000%60) + "s";
-
-  const hoursPassed = Math.floor(( (target - diff) - (target - 11.75*3600000) ) / 3600000);
-
-  for(let i=1;i<=14;i++){
-    if(i <= hoursPassed){
-      document.getElementById("m"+i).classList.add("show");
-    }
+  if(diff > 0){
+    document.getElementById("countdown").innerHTML =
+      Math.floor(diff/1000/60/60) + "h " +
+      Math.floor(diff/1000/60%60) + "m " +
+      Math.floor(diff/1000%60) + "s";
+  } else {
+    document.getElementById("countdown").innerHTML = "You're here ❤️";
   }
+
+  revealTimes.forEach((time, i) => {
+    const [h, m] = time.split(":");
+    const reveal = new Date();
+    reveal.setHours(h, m, 0, 0);
+
+    if(now >= reveal){
+      document.getElementById("m"+(i+1)).classList.add("show");
+    }
+  });
 }
 
-setInterval(update,1000);
+setInterval(update, 1000);
 </script>
 
 </body>
