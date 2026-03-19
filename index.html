@@ -129,9 +129,15 @@ Just yours…
 in a way that feels easy, real, and unconditional.</div>
 
 <script>
-const target = new Date();
-target.setDate(target.getDate() + 1);
+const now = new Date();
+
+let target = new Date();
 target.setHours(10,45,0,0);
+
+// If current time is already past 10:45 AM today → move to tomorrow
+if(now > target){
+  target.setDate(target.getDate() + 1);
+}
 
 const revealTimes = [
   "00:00","01:00","02:00","03:00","04:00","05:00",
