@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Until I See You</title>
+  <style>
+    body {
+      font-family: -apple-system, sans-serif;
+      text-align: center;
+      background: #0f0f0f;
+      color: white;
+      padding: 40px;
+    }
+    h1 { font-weight: 300; }
+    #countdown { font-size: 28px; margin: 20px 0; }
+    .message {
+      display: none;
+      margin-top: 30px;
+      font-size: 18px;
+      line-height: 1.6;
+      opacity: 0;
+      transition: opacity 1s;
+    }
+    .show {
+      display: block;
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>Until I See You</h1>
+<div id="countdown"></div>
+
+<div id="m1" class="message">I don’t think you realise this… but tonight doesn’t feel like any other night to me.</div>
+<div id="m2" class="message">I was just thinking about November… about Hyderabad… about how something in me had already started changing.</div>
+<div id="m3" class="message">I remember the way you looked at me… like you already knew what you felt.</div>
+<div id="m4" class="message">You were so sure about us. And I wasn’t… not because I didn’t feel it.</div>
+<div id="m5" class="message">I think a part of me was scared… because it meant I was about to feel it too.</div>
+<div id="m6" class="message">Somewhere along the way… you stopped being just someone I met… and became someone I can’t imagine my days without.</div>
+<div id="m7" class="message">It was in the small things. The way you stayed. The way you chose me, every day.</div>
+<div id="m8" class="message">I didn’t just understand your love… I fell into it.</div>
+<div id="m9" class="message">Now I don’t question it anymore. I just feel it… fully.</div>
+<div id="m10" class="message">January… me showing up… because something in me already knew you mattered.</div>
+<div id="m11" class="message">You showed me a kind of love I didn’t know existed.</div>
+<div id="m12" class="message">I stopped holding back. I just… drowned in it.</div>
+<div id="m13" class="message">Okay… now it’s real.</div>
+<div id="m14" class="message">And now I’m here. Just yours… ❤️</div>
+
+<script>
+const target = new Date();
+target.setHours(10,45,0,0);
+target.setDate(target.getDate()+1);
+
+function update() {
+  const now = new Date();
+  const diff = target - now;
+
+  document.getElementById("countdown").innerHTML =
+    Math.floor(diff/1000/60/60) + "h " +
+    Math.floor(diff/1000/60%60) + "m " +
+    Math.floor(diff/1000%60) + "s";
+
+  const hoursPassed = Math.floor(( (target - diff) - (target - 11.75*3600000) ) / 3600000);
+
+  for(let i=1;i<=14;i++){
+    if(i <= hoursPassed){
+      document.getElementById("m"+i).classList.add("show");
+    }
+  }
+}
+
+setInterval(update,1000);
+</script>
+
+</body>
+</html>
